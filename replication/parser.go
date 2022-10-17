@@ -222,6 +222,10 @@ func (p *BinlogParser) parseHeader(data []byte) (*EventHeader, error) {
 	return h, nil
 }
 
+func (p *BinlogParser) ParseHeader(data []byte) (*EventHeader, error) {
+	return p.parseHeader(data)
+}
+
 func (p *BinlogParser) parseEvent(h *EventHeader, data []byte, rawData []byte) (Event, error) {
 	var e Event
 
@@ -313,6 +317,10 @@ func (p *BinlogParser) parseEvent(h *EventHeader, data []byte, rawData []byte) (
 	}
 
 	return e, nil
+}
+
+func (p *BinlogParser) ParseEvent(h *EventHeader, data []byte, rawData []byte) (Event, error) {
+	return p.parseEvent(h, data, rawData)
 }
 
 // Parse: Given the bytes for a a binary log event: return the decoded event.
